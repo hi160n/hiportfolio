@@ -1,3 +1,35 @@
+// ===== ヘッダー生成 =====
+function renderHeader() {
+  const header = document.createElement("header");
+  header.className = "top-header";
+  header.innerHTML = `
+    <div class="header-row">
+      <a href="cart.html" class="cart-icon">
+        🛒
+        <span id="cart-count" class="badge">0</span>
+      </a>
+    </div>
+    <h1 class="logo">
+      <a href="index.html">✧HS's kirakira Shop✧</a>
+    </h1>
+    <div class="search-area">
+      <input type="text" id="search" placeholder="商品を検索…" class="search-box">
+    </div>
+  `;
+  document.body.insertBefore(header, document.body.firstChild);
+}
+
+// ↑のトップロゴを画像にする場合
+// // 変更前
+// <h1 class="logo">
+//   <a href="index.html">✧HS's kirakira Shop✧</a>
+// </h1>
+
+// // 変更後
+// <a href="index.html" class="logo">
+//   <img src="images/logo.png" alt="✧HS's kirakira Shop✧">
+// </a>
+
 // ===== テキスト正規化（ひらがな→カタカナ・全角→半角） =====
 function normalizeText(str) {
   if (!str) return "";
@@ -80,3 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// ===== フッター生成 =====
+function renderFooter() {
+  const footer = document.createElement("footer");
+  footer.className = "shop-footer";
+  footer.innerHTML = `
+    <p>Copyright © HS All Rights Reserved.</p>
+  `;
+  document.body.appendChild(footer);
+}
