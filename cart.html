@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>カート</title>
+
+  <script src="js/products.js"></script>
+
+  <link rel="stylesheet" href="css/common.css">
+
+  <style>
+    /* ===== カートアイテム ===== */
+    .item {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-image {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #d1798b;
+      font-size: 15px;
+      margin-right: 10px;
+    }
+
+    .delete-btn {
+      background: #e8c5ce;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      color: #7b4a63;
+      transition: opacity .2s;
+    }
+
+    .delete-btn:hover {
+      opacity: 0.8;
+    }
+
+    /* ===== 合計金額 ===== */
+    .total-box {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d1798b;
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: #6a4c7a;
+      text-decoration: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: #575757;
+    }
+
+    /* ===== カートリンク ===== */
+    .cart-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-grow: 1;
+    }
+
+    .cart-link img {
+      transition: opacity .25s;
+    }
+
+    .cart-link:hover img {
+      opacity: 0.8;
+    }
+
+    .cart-link span {
+      transition: color .25s;
+    }
+
+    .cart-link:hover span {
+      color: #d1798b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <div id="header"></div>
+
+  <!-- ===== ヘッダー以下 ===== -->
+  <div class="container">
+
+    <h1>カート</h1>
+
+    <div id="cart-items"></div>
+
+    <div class="total-box">
+      <div class="total" id="total-price">合計: ¥0</div>
+      <a href="index.html" class="back">TOPに戻る</a>
+    </div>
+
+    <!-- ===== おすすめ商品一覧（JSで生成） ===== -->
+    <h2 class="recommend-title">おすすめ商品</h2>
+    <div id="recommend-list" class="product-list"></div>
+
+  </div>
+
+  <!-- ===== フッター ===== -->
+  <div id="shop-footer"></div>
+
+  <script src="js/common.js"></script>
+  <script>
+    renderHeader();
+    renderFooter();
+    renderRecommend();
+    renderCart();
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const container = document.getElementById("cart-items");
+      container.innerHTML = "";
+      let total = 0;
+
+      // カートが空のとき
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div style="
+            background: rgba(255,255,255,0.85);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: #777;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+          ">
+            まだ商品が入っていません 🛒
+          </div>`;
+        document.getElementById("total-price").textContent = "合計: ¥0";
+        return;
+      }
+
+      // カートに商品があるとき
+      cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <a href="${item.url}" class="cart-link">
+            <img src="${item.image}" class="cart-image">
+            <span>${item.name}</span>
+          </a>
+          <span class="price">¥${item.price.toLocaleString()}</span>
+          <button class="delete-btn" onclick="deleteItem(${index})">削除</button>
+        `;
+        container.appendChild(div);
+        total += item.price;
+      });
+
+      document.getElementById("total-price").textContent =
+        `合計: ¥${total.toLocaleString()}`;
+    }
+
+    function deleteItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+  </script>
+
+</body>
+
+</html>
