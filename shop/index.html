@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>✧HS's kirakira Shop✧</title>
+
+  <script src="js/products.js"></script>
+
+  <link rel="stylesheet" href="css/common.css">
+
+  <style>
+    /* ===== 商品グリッド ===== */
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ===== カード ===== */
+    .product-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #d1798b;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #d1798b;
+      margin-bottom: 8px;
+    }
+
+    /* ===== 在庫ラベル ===== */
+    .stock-label {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+
+    .in-stock {
+      background: #d1798b;
+      color: #fff;
+    }
+
+    .sold-out {
+      background: #eee;
+      color: #777;
+    }
+
+    .product-card.soldout {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <div id="header"></div>
+
+  <!-- ===== ヘッダー以下 ===== -->
+  <div class="container">
+
+    <!-- ===== 商品一覧（JSで生成） ===== -->
+    <div id="product-list" class="product-list"></div>
+
+    <!-- ===== フッター ===== -->
+    <div id="shop-footer"></div>
+
+    <script src="js/common.js"></script>
+    <script>
+      renderHeader();
+      renderProducts();
+      renderFooter();
+    </script>
+
+  </div>
+
+</body>
+
+</html>

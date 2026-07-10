@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HS Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f9f6f2;
+      --text: #2c2c2c;
+      --accent: #b07a6e;
+      --muted: #9a9189;
+      --line: #e0d9d3;
+      --card-bg: #ffffff;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== ナビゲーション ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(249, 246, 242, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      position: absolute;
+      left: 48px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== ヒーロー ===== */
+    .hero {
+      margin-top: 65px;
+      /* navの高さ分 */
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 65px);
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      color: #fff;
+    }
+
+    .hero-caption h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.1;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-caption p {
+      margin-top: 10px;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ヒーロー画像がない場合のプレースホルダー */
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8ddd6 0%, #d4c8c0 50%, #c9b8ae 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-placeholder span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== セクション共通 ===== */
+    .section {
+      padding: 96px 48px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      border-top: 1px solid var(--line);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .about-text {
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text);
+    }
+
+    .about-text p+p {
+      margin-top: 1.5em;
+    }
+
+    /* ===== History ===== */
+    #history {
+      border-top: 1px solid var(--line);
+    }
+
+    /* ===== Gallery ===== */
+    #gallery {
+      border-top: 1px solid var(--line);
+      max-width: 100%;
+      padding: 96px 48px;
+    }
+
+    .gallery-header {
+      max-width: 1000px;
+      margin: 0 auto 48px;
+    }
+
+    .gallery-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 300;
+    }
+
+    /* サムネイル横スクロール */
+    .thumb-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 0 48px 16px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      max-width: 100%;
+    }
+
+    .thumb-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .thumb-item {
+      flex-shrink: 0;
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity .2s, transform .2s;
+      border: 2px solid transparent;
+    }
+
+    .thumb-item:hover,
+    .thumb-item.active {
+      opacity: 1;
+      border-color: var(--accent);
+    }
+
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 作品詳細パネル */
+    .gallery-panel {
+      display: none;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 0 0 40px;
+      border-bottom: 1px solid var(--line);
+      animation: fadeIn .3s ease;
+    }
+
+    .gallery-panel.open {
+      display: grid;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gallery-panel img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .gallery-info {
+      padding-top: 8px;
+    }
+
+    .gallery-title-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .gallery-title-ja {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .gallery-desc {
+      font-size: 14px;
+      line-height: 2;
+      color: var(--text);
+    }
+
+    .gallery-close {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      transition: color .2s;
+    }
+
+    .gallery-close:hover {
+      color: var(--accent);
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 16px 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .section {
+        padding: 64px 20px;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      #gallery {
+        padding: 64px 0;
+      }
+
+      .gallery-header {
+        padding: 0 20px;
+      }
+
+      .thumb-scroll {
+        padding: 0 20px 16px;
+      }
+
+      .gallery-panel {
+        grid-template-columns: 1fr;
+        margin: 24px 20px 0;
+      }
+
+      .hero-caption {
+        left: 20px;
+        bottom: 32px;
+      }
+
+      footer {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== ナビゲーション ===== -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">HS</a>
+
+    <ul class="nav-links">
+      <li><a href="#hero">Hero</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#history">History</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="hero">
+    <!-- 画像がある場合: <img src="images/hero.jpg" alt="hero"> -->
+    <!-- 画像がない場合はプレースホルダーを表示 -->
+    <div class="hero-placeholder">
+      <span>hero image</span>
+    </div>
+
+    <div class="hero-caption">
+      <h1>HS Portfolio<br></h1>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="section">
+      <p class="section-label">About</p>
+      <div class="about-inner">
+        <h2 class="about-heading">About<br>This Site</h2>
+        <div class="about-text">
+          <p>ここにサイトや作者の紹介文を書きます。どんな作品を作っているか、どんなテーマで活動しているかなど、自由に記述してください。</p>
+          <p>2〜3段落程度が読みやすいです。見てくれた方に伝えたいことを、自分らしい言葉でまとめましょう。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HISTORY ===== -->
+  <section id="history">
+    <div class="section">
+      <p class="section-label">History</p>
+      <div class="about-inner">
+        <h2 class="about-heading">History</h2>
+        <div class="about-text">
+          <p>ここに経歴を書きます。</p>
+          <p>年表形式や文章形式など、自由にアレンジしてください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery">
+    <div class="gallery-header">
+      <p class="section-label">Gallery</p>
+      <h2 class="gallery-heading">Line Up</h2>
+    </div>
+
+    <!-- サムネイル横スクロール -->
+    <div class="thumb-scroll" id="thumb-scroll"></div>
+
+    <!-- 作品詳細パネル -->
+    <div class="gallery-panel" id="gallery-panel">
+      <img id="panel-img" src="" alt="">
+      <div class="gallery-info">
+        <div class="gallery-title-en" id="panel-title-en"></div>
+        <div class="gallery-title-ja" id="panel-title-ja"></div>
+        <p class="gallery-desc" id="panel-desc"></p>
+        <span class="gallery-close" onclick="closePanel()">Close ×</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Dummy Shop ===== -->
+  <section id="Dummy Shop">
+    <div class="section">
+      <p class="section-label">Shop</p>
+      <div class="about-inner">
+        <h2 class="about-heading">Shop</h2>
+        <div class="about-text">
+          <p><a href="shop/index.html">✧ダミーのハンドメイドショップはこちら✧</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== フッター ===== -->
+  <footer>
+    <div class="footer-logo">HS</div>
+    <p class="footer-copy">Copyright © HS All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ===== 作品データ =====
+    // 作品を追加するときはここに追記するだけでOK
+    const gallery = [
+      {
+        id: 1,
+        titleEn: "gallery Title 01",
+        titleJa: "作品タイトル 01",
+        thumb: "",   // サムネイル画像パス例: "images/thum/thum_01.png"
+        image: "",   // 大きい画像パス例: "images/graphic/graphic_01.jpg"
+        desc: "作品の説明文をここに書きます。素材・制作背景・こだわりポイントなど、自由に記述してください。"
+      },
+      {
+        id: 2,
+        titleEn: "gallery Title 02",
+        titleJa: "作品タイトル 02",
+        thumb: "",
+        image: "",
+        desc: "作品の説明文をここに書きます。素材・制作背景・こだわりポイントなど、自由に記述してください。"
+      },
+      {
+        id: 3,
+        titleEn: "gallery Title 03",
+        titleJa: "作品タイトル 03",
+        thumb: "",
+        image: "",
+        desc: "作品の説明文をここに書きます。素材・制作背景・こだわりポイントなど、自由に記述してください。"
+      },
+      {
+        id: 4,
+        titleEn: "gallery Title 04",
+        titleJa: "作品タイトル 04",
+        thumb: "",
+        image: "",
+        desc: "作品の説明文をここに書きます。素材・制作背景・こだわりポイントなど、自由に記述してください。"
+      },
+      {
+        id: 5,
+        titleEn: "gallery Title 05",
+        titleJa: "作品タイトル 05",
+        thumb: "",
+        image: "",
+        desc: "作品の説明文をここに書きます。素材・制作背景・こだわりポイントなど、自由に記述してください。"
+      },
+    ];
+
+    // ===== サムネイル生成 =====
+    const thumbScroll = document.getElementById("thumb-scroll");
+
+    gallery.forEach(gallery => {
+      const div = document.createElement("div");
+      div.className = "thumb-item";
+      div.dataset.id = gallery.id;
+
+      // 画像がある場合はimgを、ない場合はプレースホルダーを表示
+      if (gallery.thumb) {
+        div.innerHTML = `<img src="${gallery.thumb}" alt="${gallery.titleEn}">`;
+      } else {
+        div.style.background = "#e8ddd6";
+        div.style.display = "flex";
+        div.style.alignItems = "center";
+        div.style.justifyContent = "center";
+        div.innerHTML = `<span style="font-size:10px;color:#9a9189;">${gallery.id.toString().padStart(2, "0")}</span>`;
+      }
+
+      div.addEventListener("click", () => openPanel(gallery.id));
+      thumbScroll.appendChild(div);
+    });
+
+    // ===== パネルを開く =====
+    function openPanel(id) {
+      const gallery = gallery.find(w => w.id === id);
+      if (!gallery) return;
+
+      // アクティブなサムネイルを更新
+      document.querySelectorAll(".thumb-item").forEach(el => {
+        el.classList.toggle("active", Number(el.dataset.id) === id);
+      });
+
+      // パネルの内容を更新
+      const panel = document.getElementById("gallery-panel");
+      const img = document.getElementById("panel-img");
+
+      if (gallery.image) {
+        img.src = gallery.image;
+        img.style.display = "block";
+      } else {
+        img.style.display = "none";
+        // 画像がない場合のプレースホルダーを挿入（初回のみ）
+        if (!document.getElementById("panel-placeholder")) {
+          const ph = document.createElement("div");
+          ph.id = "panel-placeholder";
+          ph.style.cssText = "background:#e8ddd6;border-radius:8px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#9a9189;font-size:14px;";
+          ph.textContent = "image";
+          img.parentNode.insertBefore(ph, img);
+        }
+        document.getElementById("panel-placeholder").style.display = "flex";
+      }
+
+      document.getElementById("panel-title-en").textContent = gallery.titleEn;
+      document.getElementById("panel-title-ja").textContent = gallery.titleJa;
+      document.getElementById("panel-desc").textContent = gallery.desc;
+
+      panel.classList.add("open");
+
+      // パネルへスクロール
+      panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // ===== パネルを閉じる =====
+    function closePanel() {
+      document.getElementById("gallery-panel").classList.remove("open");
+      document.querySelectorAll(".thumb-item").forEach(el => el.classList.remove("active"));
+    }
+  </script>
+
+</body>
+
+</html>
