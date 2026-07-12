@@ -10,7 +10,7 @@ function renderHeader() {
       </a>
     </div>
       <a href="index.html" class="logo">
-       <img src="../images/header.png" alt="✧Hii's kirakira Shop✧">
+       <img src="images/header.png" alt="✧Hii's kirakira Shop✧">
       </a>
     <div class="search-area">
       <input type="text" id="search" placeholder="商品を検索…" class="search-box">
@@ -27,7 +27,7 @@ function renderHeader() {
 
 // // 画像
 // <a href="index.html" class="logo">
-//   <img src="../images/logo.png" alt="✧HS's kirakira Shop✧">
+//   <img src="images/logo.png" alt="✧HS's kirakira Shop✧">
 // </a>
 
 // ===== テキスト正規化（ひらがな→カタカナ・全角→半角） =====
@@ -68,7 +68,7 @@ function renderProducts(keyword = "") {
         : `<div class="stock-label sold-out">売り切れ</div>`;
 
       return `
-        <a href="/detail.html?id=${p.id}"
+        <a href="detail.html?id=${p.id}"
            class="product-card ${isSearch ? "search-result" : ""} ${p.stock === 0 ? "soldout" : ""}">
           <img src="${p.images[0]}" alt="${p.name}">
           <div class="product-name">${p.name}</div>
@@ -91,7 +91,7 @@ function renderRecommend(excludeId = null) {
     .sort(() => Math.random() - 0.5)
     .slice(0, 4)
     .map(p => `
-      <a href="/detail.html?id=${p.id}" class="product-card">
+      <a href="detail.html?id=${p.id}" class="product-card">
         <img src="${p.images[0]}" alt="${p.name}">
         <div class="product-name">${p.name}</div>
         <div class="price">¥${p.price.toLocaleString()}</div>
