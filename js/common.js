@@ -118,7 +118,7 @@ function renderFooter() {
   const footer = document.createElement("footer");
   footer.className = "shop-footer";
   footer.innerHTML = `
-    <p>Copyright © HS All Rights Reserved.</p>
+    <p>Copyright © Hii All Rights Reserved.</p>
   `;
   document.body.appendChild(footer);
 }
