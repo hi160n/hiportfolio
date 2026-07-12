@@ -6,8 +6,8 @@ const products = [
     price: 0,
     stock: 0,
     images: [
-      "/images/.jpg",
-      "/images/.jpg"
+      "..../images/.jpg",
+      "..../images/.jpg"
     ],
     description: "none"
   },
@@ -19,7 +19,7 @@ const products = [
     price: 2000,
     stock: 1,
     images: [
-      "/images/20260329_143650.jpg"
+      "../images/20260329_143650.jpg"
     ],
     description: "シャカシャカ音がかわいいハートのキーホルダー。ライトピンクでふんわり優しい雰囲気です。"
   },
@@ -30,7 +30,7 @@ const products = [
     price: 2000,
     stock: 2,
     images: [
-      "/images/20260329_144104.jpg"
+      "../images/20260329_144104.jpg"
     ],
     description: "人気のシャカシャカハートシリーズのピンク。少し大人っぽいピンクのマーブル。"
   },
@@ -41,7 +41,7 @@ const products = [
     price: 1800,
     stock: 1,
     images: [
-      "/images/20260329_144551.jpg"
+      "../images/20260329_144551.jpg"
     ],
     description: "カクテルをイメージした透明感のあるキーホルダー。大きめラメが輝く、バッグのワンポイントに。"
   },
@@ -52,9 +52,9 @@ const products = [
     price: 3000,
     stock: 1,
     images: [
-      "/images/20250326_153225.jpg",
-      "/images/20250326_154903.jpg",
-      "/images/20250326_154914.jpg"
+      "../images/20250326_153225.jpg",
+      "../images/20250326_154903.jpg",
+      "../images/20250326_154914.jpg"
     ],
     description: "5種類のモチーフのシャカシャカヘアゴム。気分に合わせてヘアアレンジ。ヘアゴム直径 約4cm。"
   },
@@ -65,7 +65,7 @@ const products = [
     price: 600,
     stock: 1,
     images: [
-      "/images/20250326_153658.jpg"
+      "../images/20250326_153658.jpg"
     ],
     description: "ハートモチーフのシャカシャカヘアゴム。ヘアゴム直径 約4cm。"
   },
@@ -76,7 +76,7 @@ const products = [
     price: 600,
     stock: 1,
     images: [
-      "/images/20250326_153608.jpg"
+      "../images/20250326_153608.jpg"
     ],
     description: "ベアモチーフのシャカシャカヘアゴム。ヘアゴム直径 約4cm。"
   },
@@ -87,7 +87,7 @@ const products = [
     price: 600,
     stock: 1,
     images: [
-      "/images/20250326_153802.jpg"
+      "../images/20250326_153802.jpg"
     ],
     description: "スターモチーフのシャカシャカヘアゴム。ヘアゴム直径 約4cm。"
   },
@@ -98,7 +98,7 @@ const products = [
     price: 600,
     stock: 1,
     images: [
-      "/images/20250326_153736.jpg"
+      "../images/20250326_153736.jpg"
     ],
     description: "ヘキサゴンモチーフのシャカシャカヘアゴム。ヘアゴム直径 約4cm。"
   },
@@ -109,7 +109,7 @@ const products = [
     price: 600,
     stock: 1,
     images: [
-      "/images/20250326_153825.jpg"
+      "../images/20250326_153825.jpg"
     ],
     description: "スクエアモチーフのシャカシャカヘアゴム。ヘアゴム直径 約4cm。"
   },
@@ -120,7 +120,7 @@ const products = [
     price: 0,
     stock: 0,
     images: [
-      "/images/nothing.png"
+      "../images/nothing.png"
     ],
     description: "none"
   },
@@ -131,7 +131,7 @@ const products = [
     price: 0,
     stock: 0,
     images: [
-      "/images/nothing.png"
+      "../images/nothing.png"
     ],
     description: "none"
   },
@@ -142,7 +142,7 @@ const products = [
     price: 0,
     stock: 0,
     images: [
-      "/images/nothing.png"
+      "../images/nothing.png"
     ],
     description: "none"
   }

@@ -9,9 +9,9 @@ function renderHeader() {
         <span id="cart-count" class="badge">0</span>
       </a>
     </div>
-    <h1 class="logo">
-      <a href="index.html">✧HS's kirakira Shop✧</a>
-    </h1>
+      <a href="index.html" class="logo">
+       <img src="../images/header.png" alt="✧Hii's kirakira Shop✧">
+      </a>
     <div class="search-area">
       <input type="text" id="search" placeholder="商品を検索…" class="search-box">
     </div>
@@ -19,15 +19,15 @@ function renderHeader() {
   document.body.insertBefore(header, document.body.firstChild);
 }
 
-// ↑のトップロゴを画像にする場合
-// // 変更前
+// ↑のトップロゴを変更する場合
+// // 文字
 // <h1 class="logo">
 //   <a href="index.html">✧HS's kirakira Shop✧</a>
 // </h1>
 
-// // 変更後
+// // 画像
 // <a href="index.html" class="logo">
-//   <img src="/images/logo.png" alt="✧HS's kirakira Shop✧">
+//   <img src="../images/logo.png" alt="✧HS's kirakira Shop✧">
 // </a>
 
 // ===== テキスト正規化（ひらがな→カタカナ・全角→半角） =====
