@@ -96,13 +96,7 @@
 
     .description {
       color: #575757;
-    }
-
-    @media (hover: none) {
-      .image-gallery .arrow-btn {
-        opacity: 1;
-        pointer-events: auto;
-      }
+      margin-bottom: 160px;
     }
 
     /* ===== ライトボックス ===== */
@@ -143,7 +137,7 @@
     }
 
     .price {
-      font-size: 16px;
+      font-size: 24px;
       font-weight: bold;
       color: #d1798b;
       margin-bottom: 10px;
@@ -189,6 +183,42 @@
       color: #d1798b;
       margin-bottom: 12px;
     }
+
+    /* ===== おすすめ商品 ===== */
+    .product-list {
+      font-size: 16px;
+    }
+
+    /* ===== スマホ表示 ===== */
+    @media (max-width: 768px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+        /* 画像と情報を縦並びに */
+      }
+
+      .arrow-left {
+        left: 0;
+        /* 矢印ボタンを内側に */
+      }
+
+      .arrow-right {
+        right: 0;
+      }
+
+      .price {
+        margin-top: 16px;
+        /* PC用のmargin-topをリセット */
+      }
+
+      /* スマホのとき：ホバーではなく常に表示 */
+      @media (hover: none) {
+        .image-gallery .arrow-btn {
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+
+    }
   </style>
 </head>
 
@@ -228,6 +258,10 @@
       <button class="arrow-btn arrow-left" onclick="event.stopPropagation(); showPrevImage()">＜</button>
       <img id="lightbox-img">
       <button class="arrow-btn arrow-right" onclick="event.stopPropagation(); showNextImage()">＞</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="index.html" class="back-to-top">TOPに戻る</a>
     </div>
 
     <!-- ===== おすすめ商品一覧（JSで生成） ===== -->

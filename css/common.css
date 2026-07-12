@@ -30,6 +30,10 @@
          font-weight: bold;
          color: #575757;
          text-decoration: none;
+         display: block;
+         /* ↑ ブロック要素にして中央揃えを効かせる */
+         text-align: center;
+         margin: 8px 0;
        }
 
        .logo a {
@@ -38,7 +42,7 @@
        }
 
        .logo img {
-         height: 40px;
+         height: 180px;
          width: auto;
        }
 
@@ -118,6 +122,13 @@
          margin: 0 auto;
        }
 
+       .back-to-top {
+         display: inline-block;
+         margin-top: 20px;
+         color: #575757;
+         text-decoration: none;
+       }
+
        /* ===== おすすめ商品 ===== */
        .recommend-title {
          font-size: 20px;
@@ -181,4 +192,35 @@
          color: #999;
          border-top: 1px solid #e0d9d3;
          letter-spacing: 0.1em;
+       }
+
+       /* ===== スマホ表示 ===== */
+       @media (max-width: 768px) {
+         body {
+           padding: 16px;
+         }
+
+         .top-header {
+           padding: 16px 16px 10px;
+           margin-top: -16px;
+         }
+
+         h1 {
+           font-size: 18px;
+         }
+
+         .search-box {
+           max-width: 100%;
+           font-size: 14px;
+         }
+
+         .product-list {
+           grid-template-columns: repeat(2, 1fr);
+           gap: 12px;
+         }
+
+         .product-card .product-name,
+         .product-card .price {
+           font-size: 14px;
+         }
        }

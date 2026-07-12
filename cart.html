@@ -73,12 +73,6 @@
       text-decoration: none;
     }
 
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: #575757;
-    }
-
     /* ===== カートリンク ===== */
     .cart-link {
       display: flex;
@@ -102,6 +96,28 @@
     .cart-link:hover span {
       color: #d1798b;
     }
+
+    /* ===== スマホ表示 ===== */
+    @media (max-width: 768px) {
+      .item {
+        flex-wrap: wrap;
+        /* 商品名が長い場合に折り返す */
+        gap: 8px;
+      }
+
+      .cart-image {
+        width: 56px;
+        height: 56px;
+      }
+
+      .price {
+        font-size: 13px;
+      }
+
+      .total {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
@@ -119,7 +135,10 @@
 
     <div class="total-box">
       <div class="total" id="total-price">合計: ¥0</div>
-      <a href="index.html" class="back">TOPに戻る</a>
+    </div>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="index.html" class="back-to-top">TOPに戻る</a>
     </div>
 
     <!-- ===== おすすめ商品一覧（JSで生成） ===== -->
